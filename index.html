@@ -72,12 +72,73 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;ba
 @media(max-width:420px){.hero-art{transform:scale(.88);margin:-10px -20px}.orbit-chip{font-size:8px}.cards{gap:9px}.card{min-height:132px;padding:13px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
+
+/* HOPE — flagship product finish */
+:root{--bg:#050607;--panel:rgba(15,17,21,.76);--panel2:rgba(255,255,255,.035);--line:rgba(255,255,255,.09);--text:#f5f3ed;--muted:#858991;--gold:#d8b56b}
+html{scroll-behavior:smooth}
+body{background:#050607;position:relative}
+body:after{content:"";position:fixed;z-index:-2;inset:-20%;pointer-events:none;background:radial-gradient(ellipse at 72% 18%,rgba(177,137,65,.14),transparent 26%),radial-gradient(ellipse at 18% 72%,rgba(57,76,105,.11),transparent 30%),radial-gradient(ellipse at 50% 110%,rgba(126,92,45,.08),transparent 32%);animation:ambientDrift 24s ease-in-out infinite alternate}
+.shell{max-width:1400px;padding:30px clamp(18px,4vw,56px) 84px}
+.top{position:relative;border-bottom:1px solid rgba(255,255,255,.075);padding-bottom:22px}
+.top:after{content:"";position:absolute;bottom:-1px;left:0;width:130px;height:1px;background:linear-gradient(90deg,#d8b56b,transparent)}
+.brandmark{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#282216,#101114 70%);box-shadow:inset 0 1px 0 #fff4,0 8px 30px #000;border-color:#8c7042}
+.brand{font-size:29px;letter-spacing:-2.6px}.eyebrow{font-size:9px;letter-spacing:2.1px;color:#8d9098}
+.pill{font-size:9px;letter-spacing:1.3px;padding:9px 14px;color:#d4c7a8;background:linear-gradient(120deg,rgba(216,181,107,.09),rgba(255,255,255,.025));border-color:rgba(216,181,107,.22)}
+.hero3d{min-height:390px;padding:58px 4.2% 40px;grid-template-columns:1.06fr .94fr}
+.hero-kicker{font-size:9px;letter-spacing:2.1px;color:#c9b17f;margin-bottom:27px}
+.hero h1{font-size:clamp(48px,6.5vw,86px);line-height:.98;letter-spacing:-6.5px;font-weight:500}
+.hero h1 em{background:linear-gradient(105deg,#fff0c9 2%,#d8b56b 40%,#8f6b36 72%,#f2dfb4);background-size:200% auto;animation:goldFlow 9s ease-in-out infinite alternate;-webkit-background-clip:text;background-clip:text}
+.hero p{font-size:14px;max-width:390px;color:#a5a7ad;line-height:1.9}
+.hero-foot{font-size:8px;letter-spacing:1.7px;color:#777b83}
+.hero-art{height:330px;filter:drop-shadow(0 30px 45px rgba(0,0,0,.3))}
+.hero-orb{width:190px;height:190px;background:radial-gradient(circle at 29% 22%,#fff 0,rgba(255,255,255,.52) 2%,rgba(232,207,158,.27) 8%,rgba(121,112,98,.22) 24%,rgba(34,37,43,.9) 58%,#07080b 76%);border:1px solid rgba(255,255,255,.42);box-shadow:inset -25px -27px 48px #000e,inset 13px 12px 30px #fff4,0 0 90px rgba(196,157,85,.18),0 35px 90px #000}
+.hero-orb:before{inset:8px;border-color:rgba(255,255,255,.28);box-shadow:inset 0 0 22px #fff2}
+.hero-orb:after{inset:25px;border-color:rgba(216,181,107,.35)}
+.orb-core{font-size:59px;text-shadow:0 0 34px #f0d69a99}
+.orbital-one{width:320px;height:122px;border-color:rgba(230,196,128,.38)}
+.orbital-two{width:365px;height:148px;border-color:rgba(255,255,255,.2)}
+.orbital-three{width:252px;height:252px;border-color:rgba(216,181,107,.22)}
+.orbit-chip{font-size:8px;letter-spacing:1.2px;padding:10px 14px;background:linear-gradient(130deg,rgba(39,41,44,.8),rgba(14,15,18,.66));border-color:rgba(255,255,255,.19);box-shadow:inset 0 1px 0 #fff2,0 12px 35px #0009}
+.chip-one{left:6%;top:34px}.chip-two{right:-1%;top:49%}.chip-three{left:12%;bottom:17px}
+.metrics{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:0;margin:0 0 25px;padding:19px 24px;border:1px solid rgba(255,255,255,.105);border-radius:17px;background:linear-gradient(105deg,rgba(255,255,255,.055),rgba(255,255,255,.018) 55%,rgba(216,181,107,.045));backdrop-filter:blur(24px);box-shadow:inset 0 1px 0 rgba(255,255,255,.075),0 20px 60px #0004}
+.metric{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center;padding:3px 24px;border-right:1px solid rgba(255,255,255,.09)}
+.metric:first-child{padding-left:0}.metric:nth-child(3){border:0}.metric-label{grid-column:1/-1;font:9px "IBM Plex Mono";letter-spacing:1.5px;color:#8f9299;margin-bottom:7px}
+.metric strong{font:500 27px "IBM Plex Mono";letter-spacing:-1.5px;color:#f1e7d2}.metric small{align-self:end;padding-bottom:4px;font-size:10px;color:#8b8e96}
+.metric-note strong{font-size:21px}.metric-note small{font-size:10px}
+.metric-orbit{position:absolute;right:-50px;top:-100px;width:250px;height:250px;border:1px solid rgba(216,181,107,.11);border-radius:50%;pointer-events:none}
+.metric-orbit:before,.metric-orbit:after{content:"";position:absolute;inset:22px;border:1px solid rgba(255,255,255,.07);border-radius:50%}.metric-orbit:after{inset:48px;border-color:rgba(216,181,107,.1)}
+.metric-orbit i{position:absolute;width:5px;height:5px;border-radius:50%;background:#d8b56b;box-shadow:0 0 12px #d8b56b;top:22px;left:50%}
+.metric-orbit i:nth-child(2){top:72%;left:13%;width:3px;height:3px}.metric-orbit i:nth-child(3){top:35%;left:88%;width:4px;height:4px}
+.layout{grid-template-columns:225px minmax(0,1fr);gap:20px}
+.side{padding:13px;border-radius:17px;background:rgba(13,15,18,.72);box-shadow:inset 0 1px 0 #fff1,0 20px 55px #0004}
+.navbtn{position:relative;font-size:11px;letter-spacing:.2px;padding:13px 14px;color:#9b9ea5}
+.navbtn.active{background:linear-gradient(100deg,rgba(216,181,107,.15),rgba(216,181,107,.025));border-color:rgba(216,181,107,.13);color:#f0d69c}
+.content{border-radius:19px;padding:26px;background:linear-gradient(145deg,rgba(19,21,25,.82),rgba(10,12,15,.78));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 24px 70px #0004}
+.toolbar{margin-bottom:24px}.toolbar .muted{font-size:11px;margin-top:7px}
+.btn{border-radius:9px;padding:12px 17px;font-size:11px;letter-spacing:.15px;background:linear-gradient(135deg,#f2dba9,#c69d58 72%,#a77d3f);box-shadow:0 5px 24px rgba(198,157,88,.16),inset 0 1px 0 #fff9}
+.cards{gap:14px}
+.card{min-height:158px;padding:18px;border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.018) 68%);border-color:rgba(255,255,255,.105);box-shadow:inset 0 1px 0 rgba(255,255,255,.075),0 16px 35px rgba(0,0,0,.19)}
+.card:after{content:"↗";position:absolute;right:17px;bottom:17px;font:14px "IBM Plex Mono";color:rgba(216,181,107,0);transform:translate(-4px,4px);transition:all .25s}
+.card:hover:after{color:#d8b56b;transform:translate(0,0)}
+.card .ico{font-size:21px;color:#e3c78f;text-shadow:0 0 18px rgba(216,181,107,.35)}
+.card-count{font-size:36px;font-weight:400}
+.card strong{font-size:12px;letter-spacing:.7px}.card small{font-size:10px;letter-spacing:.1px}
+.item{padding:15px 16px;background:linear-gradient(100deg,rgba(255,255,255,.045),rgba(255,255,255,.018));border-radius:13px;transition:border-color .2s,transform .2s}
+.item:hover{transform:translateY(-2px);border-color:rgba(216,181,107,.24)}
+.dialog{border-radius:20px;box-shadow:0 35px 120px #000d,inset 0 1px 0 #fff1}
+@keyframes ambientDrift{0%{transform:translate3d(-1%,0,0) scale(1)}100%{transform:translate3d(2%,-1%,0) scale(1.05)}}
+@keyframes goldFlow{0%{background-position:0% center}100%{background-position:100% center}}
+@media(max-width:800px){.shell{padding:18px 16px 55px}.hero3d{padding:42px 3% 16px;min-height:0}.hero-art{height:255px}.metrics{grid-template-columns:1fr 1fr;padding:17px}.metric{padding:4px 13px}.metric:first-child{padding-left:0}.metric:nth-child(2){border:0}.metric:nth-child(3){grid-column:1/-1;border-top:1px solid rgba(255,255,255,.09);margin-top:13px;padding:13px 0 0}.metric-note strong{font-size:19px}.layout{grid-template-columns:1fr}.side{padding:8px}.navbtn{padding:11px 12px}.content{padding:18px}}
+@media(max-width:420px){.hero h1{font-size:48px;letter-spacing:-3.5px}.hero-art{height:230px;transform:scale(.86);margin:-6px -22px}.metrics{gap:0}.metric strong{font-size:24px}.metric small{font-size:9px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card{min-height:139px;padding:14px}.content{padding:14px}}
+@media(prefers-reduced-motion:reduce){body:after,.hero h1 em{animation:none!important}}
+
 </style></head>
 <body>
 <div id="app" class="shell">
  <header class="top"><div><div class="brandline"><span class="brandmark" aria-hidden="true">H</span><div class="brand">HOPE<span>.</span></div></div><div class="eyebrow">A LITTLE SPACE FOR EVERYTHING</div></div><div class="pill" id="status">PUBLIC SPACE</div></header>
  <main id="workspace">
   <section class="hero hero3d"><div class="hero-copy"><div class="hero-kicker"><span class="live-dot"></span> YOUR PERSONAL SHARING UNIVERSE</div><h1>Everything<br>in one <em>orbit.</em></h1><p>Memories, ideas and little things worth keeping — all together, always within reach.</p><div class="hero-foot"><span class="hero-line"></span><span>YOUR SPACE · YOUR PEOPLE · YOUR MOMENTS</span></div></div><div class="hero-art" aria-hidden="true"><div class="orbital orbital-one"></div><div class="orbital orbital-two"></div><div class="orbital orbital-three"></div><div class="hero-orb"><div class="orb-shine"></div><div class="orb-core">H<span>.</span></div><div class="orb-glint"></div></div><div class="orbit-chip chip-one">✦ &nbsp; KEEP</div><div class="orbit-chip chip-two">↗ &nbsp; SHARE</div><div class="orbit-chip chip-three">◈ &nbsp; REMEMBER</div></div></section>
+  <section class="metrics" aria-label="HOPE overview metrics"><div class="metric"><span class="metric-label">YOUR COLLECTION</span><strong id="totalItems">0</strong><small>items saved</small></div><div class="metric"><span class="metric-label">ORGANIZED INTO</span><strong>07</strong><small>dedicated spaces</small></div><div class="metric metric-note"><span class="metric-label">MADE TO BE SHARED</span><strong>One space.</strong><small>Everything that matters, together.</small></div><div class="metric-orbit" aria-hidden="true"><i></i><i></i><i></i></div></section>
   <div class="layout">
    <nav class="side" id="nav">
     <button class="navbtn active" data-cat="All">⌂ &nbsp; Overview</button>
@@ -123,7 +184,7 @@ const configured=SUPABASE_URL.startsWith("https://") &&
 if(configured){db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);$("status").textContent="PUBLIC SPACE";}
 else {$("status").textContent="SETUP REQUIRED";}
 async function loadItems(){if(!db)return;const {data,error}=await db.from("hope_items").select("*").order("created_at",{ascending:false});if(error){$("items").innerHTML='<div class="empty">Could not load items: '+escapeHtml(error.message)+'</div>';return}
-const allItems=data||[];
+const allItems=data||[];const totalEl=$("totalItems");if(totalEl)totalEl.textContent=allItems.length;
 ["Photos","Videos","Music","Links","Work","Notes","Documents"].forEach(cat=>{const el=$("count-"+cat);if(el)el.textContent=allItems.filter(x=>x.category===cat).length;});
 const list=allItems.filter(x=>current==="All"||x.category===current);$("overview").classList.toggle("hide",current!=="All");$("items").classList.toggle("hide",current==="All");$("sectionTitle").textContent=current==="All"?"Overview":current;$("sectionSub").textContent=current==="All"?"Your family space, all in one place.":list.length+" saved item(s)";
 $("items").innerHTML=list.length?list.map(x=>`<article class="item"><div class="item-main"><div class="item-title">${escapeHtml(x.title||"Untitled")}</div><div class="item-meta">${escapeHtml(x.category)} · Public · ${new Date(x.created_at).toLocaleDateString()}</div>${x.content?`<div class="item-meta">${escapeHtml(x.content)}</div>`:""}</div><div style="display:flex;gap:7px;align-items:center">${x.file_path?`<button class="btn secondary" data-download="${x.id}">Download</button>`:""}<button class="btn secondary" data-delete="${x.id}">Delete</button></div></article>`).join(""):'<div class="empty">Nothing here yet. Add your first item.</div>';
