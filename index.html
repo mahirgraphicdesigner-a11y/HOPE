@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101010"><title>HOPE — Your shared space</title>
+<meta name="theme-color" content="#101010"><meta name="description" content="HOPE — a little space for everything."><title>HOPE — Your shared space</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23101010'/%3E%3Cpath d='M16 15v34M48 15v34M16 32h32' stroke='%23e9b957' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23101010'/%3E%3Cpath d='M16 15v34M48 15v34M16 32h32' stroke='%23e9b957' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -11,21 +13,21 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter, sans-serif;min-height:100vh}
 button,input,select,textarea{font:inherit}button{cursor:pointer}.mono{font-family:"IBM Plex Mono",monospace}
 .shell{max-width:1180px;margin:auto;padding:28px 24px 60px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:22px}
-.brand{font:700 27px "IBM Plex Mono";letter-spacing:-2px}.brand span{color:var(--gold)}.eyebrow{font:11px "IBM Plex Mono";letter-spacing:1.4px;color:var(--muted);margin-top:5px}
+.brandline{display:flex;align-items:center;gap:10px}.brandmark{width:34px;height:34px;display:grid;place-items:center;border:1px solid #67532e;border-radius:10px;background:#1d1a13;color:var(--gold);font:600 19px "IBM Plex Mono"}.brand{font:700 27px "IBM Plex Mono";letter-spacing:-2px}.brand span{color:var(--gold)}.eyebrow{font:11px "IBM Plex Mono";letter-spacing:1.4px;color:var(--muted);margin-top:5px}
 .pill{border:1px solid var(--line);border-radius:99px;padding:8px 12px;color:var(--muted);font:11px "IBM Plex Mono"}
 .hero{padding:48px 0 30px}.hero h1{font:500 clamp(30px,5vw,54px)/1.1 "IBM Plex Mono";letter-spacing:-2px;margin:0 0 12px}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{color:var(--muted);margin:0;line-height:1.6}
 .layout{display:grid;grid-template-columns:220px 1fr;gap:24px}.side,.content,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .side{padding:14px;height:max-content}.navbtn{width:100%;text-align:left;border:0;background:transparent;color:#aaa;padding:12px;border-radius:8px;font:13px "IBM Plex Mono"}.navbtn.active,.navbtn:hover{background:#25231d;color:var(--gold)}
 .content{padding:22px;min-height:420px}.toolbar{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap}
 h2{font:500 18px "IBM Plex Mono";margin:0}.muted{color:var(--muted);font-size:12px}.btn{background:var(--gold);color:#17130a;border:0;border-radius:8px;padding:11px 15px;font-weight:700;font-size:12px}.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}.btn:disabled{opacity:.5;cursor:not-allowed}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);background:var(--panel2);border-radius:10px;padding:16px;min-height:110px}.card .ico{font-size:21px;margin-bottom:18px}.card strong{display:block;font:13px "IBM Plex Mono";margin-bottom:5px}.card small{color:var(--muted);font-size:11px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);background:var(--panel2);border-radius:10px;padding:16px;min-height:110px}.card{position:relative;min-height:142px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .18s,border-color .18s;cursor:pointer}.card:hover{transform:translateY(-3px);border-color:#756039}.card-top{display:flex;justify-content:space-between;align-items:flex-start}.card .ico{font-size:20px;color:var(--gold);line-height:1}.card-count{font:500 30px/1 "IBM Plex Mono";letter-spacing:-1.5px;color:var(--text)}.card strong{display:block;font:13px "IBM Plex Mono";margin:0 0 5px}.card small{color:var(--muted);font-size:11px}
 .items{display:grid;gap:9px}.item{border:1px solid var(--line);border-radius:9px;padding:13px;display:flex;gap:12px;align-items:center;justify-content:space-between}.item-main{min-width:0}.item-title{font-size:13px;overflow-wrap:anywhere}.item-meta{font-size:11px;color:var(--muted);margin-top:5px}.tag{font:10px "IBM Plex Mono";color:var(--gold);border:1px solid #51452b;border-radius:99px;padding:4px 7px}
 .modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.show{display:flex}.dialog{background:#191919;border:1px solid var(--line);border-radius:14px;padding:22px;width:min(480px,100%)}.dialog h3{font:500 18px "IBM Plex Mono";margin:0 0 18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font:11px "IBM Plex Mono";color:var(--muted)}.field input,.field select,.field textarea{width:100%;background:#101010;border:1px solid var(--line);border-radius:7px;padding:11px;color:var(--text)}.row{display:flex;gap:9px}.row>*{flex:1}.auth{max-width:430px;margin:70px auto;background:var(--panel);border:1px solid var(--line);padding:25px;border-radius:14px}.auth h1{font:600 28px "IBM Plex Mono"}.auth p{color:var(--muted);font-size:13px;line-height:1.6}.notice{background:#282316;border:1px solid #51452b;color:#e9d7a9;border-radius:8px;padding:11px;font-size:12px;line-height:1.5;margin:12px 0}.empty{text-align:center;padding:45px 12px;color:var(--muted);font-size:13px}.hide{display:none!important}
 @media(max-width:720px){.shell{padding:18px 14px 40px}.layout{grid-template-columns:1fr}.side{display:flex;overflow:auto;gap:4px}.navbtn{white-space:nowrap;width:auto}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:35px 0 24px}.content{padding:15px}.top{align-items:flex-start}}
 </style></head>
 <body>
 <div id="app" class="shell">
- <header class="top"><div><div class="brand">HOPE<span>.</span></div><div class="eyebrow">A LITTLE SPACE FOR EVERYTHING</div></div><div class="pill" id="status">PUBLIC SPACE</div></header>
+ <header class="top"><div><div class="brandline"><span class="brandmark" aria-hidden="true">H</span><div class="brand">HOPE<span>.</span></div></div><div class="eyebrow">A LITTLE SPACE FOR EVERYTHING</div></div><div class="pill" id="status">PUBLIC SPACE</div></header>
  <main id="workspace">
   <section class="hero"><h1>Your space.<br><em>Your people.</em></h1><p>Keep what matters. Find it whenever you need it.</p></section>
   <div class="layout">
@@ -42,7 +44,13 @@ h2{font:500 18px "IBM Plex Mono";margin:0}.muted{color:var(--muted);font-size:12
    <section class="content">
     <div class="toolbar"><div><h2 id="sectionTitle">Overview</h2><div class="muted" id="sectionSub">Your family space, all in one place.</div></div><div class="row" style="flex:0 0 auto"><button class="btn" id="add">＋ Add item</button></div></div>
     <div id="overview" class="cards">
-     <div class="card"><div class="ico">▧</div><strong>Photos</strong><small>Memories worth keeping</small></div><div class="card"><div class="ico">♫</div><strong>Music</strong><small>Songs and playlists</small></div><div class="card"><div class="ico">↗</div><strong>Links</strong><small>Things to revisit</small></div><div class="card"><div class="ico">▤</div><strong>Work</strong><small>Files and resources</small></div><div class="card"><div class="ico">✎</div><strong>Notes</strong><small>Thoughts and reminders</small></div><div class="card"><div class="ico">▧</div><strong>Documents</strong><small>PDFs and files</small></div>
+     <button class="card" data-overview-cat="Photos"><div class="card-top"><span class="ico">▧</span><span class="card-count" id="count-Photos">0</span></div><div><strong>Photos</strong><small>Memories worth keeping</small></div></button>
+     <button class="card" data-overview-cat="Videos"><div class="card-top"><span class="ico">▶</span><span class="card-count" id="count-Videos">0</span></div><div><strong>Videos</strong><small>Moments in motion</small></div></button>
+     <button class="card" data-overview-cat="Music"><div class="card-top"><span class="ico">♫</span><span class="card-count" id="count-Music">0</span></div><div><strong>Music</strong><small>Songs and playlists</small></div></button>
+     <button class="card" data-overview-cat="Links"><div class="card-top"><span class="ico">↗</span><span class="card-count" id="count-Links">0</span></div><div><strong>Links</strong><small>Things to revisit</small></div></button>
+     <button class="card" data-overview-cat="Work"><div class="card-top"><span class="ico">▤</span><span class="card-count" id="count-Work">0</span></div><div><strong>Work</strong><small>Files and resources</small></div></button>
+     <button class="card" data-overview-cat="Notes"><div class="card-top"><span class="ico">✎</span><span class="card-count" id="count-Notes">0</span></div><div><strong>Notes</strong><small>Thoughts and reminders</small></div></button>
+     <button class="card" data-overview-cat="Documents"><div class="card-top"><span class="ico">▧</span><span class="card-count" id="count-Documents">0</span></div><div><strong>Documents</strong><small>PDFs and files</small></div></button>
     </div>
     <div id="items" class="items hide"></div>
    </section>
@@ -67,11 +75,15 @@ const configured=SUPABASE_URL.startsWith("https://") &&
 if(configured){db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);$("status").textContent="PUBLIC SPACE";}
 else {$("status").textContent="SETUP REQUIRED";}
 async function loadItems(){if(!db)return;const {data,error}=await db.from("hope_items").select("*").order("created_at",{ascending:false});if(error){$("items").innerHTML='<div class="empty">Could not load items: '+escapeHtml(error.message)+'</div>';return}
-const list=(data||[]).filter(x=>current==="All"||x.category===current);$("overview").classList.toggle("hide",current!=="All");$("items").classList.toggle("hide",current==="All");$("sectionTitle").textContent=current==="All"?"Overview":current;$("sectionSub").textContent=current==="All"?"Your family space, all in one place.":list.length+" saved item(s)";
+const allItems=data||[];
+["Photos","Videos","Music","Links","Work","Notes","Documents"].forEach(cat=>{const el=$("count-"+cat);if(el)el.textContent=allItems.filter(x=>x.category===cat).length;});
+const list=allItems.filter(x=>current==="All"||x.category===current);$("overview").classList.toggle("hide",current!=="All");$("items").classList.toggle("hide",current==="All");$("sectionTitle").textContent=current==="All"?"Overview":current;$("sectionSub").textContent=current==="All"?"Your family space, all in one place.":list.length+" saved item(s)";
 $("items").innerHTML=list.length?list.map(x=>`<article class="item"><div class="item-main"><div class="item-title">${escapeHtml(x.title||"Untitled")}</div><div class="item-meta">${escapeHtml(x.category)} · Public · ${new Date(x.created_at).toLocaleDateString()}</div>${x.content?`<div class="item-meta">${escapeHtml(x.content)}</div>`:""}</div><div style="display:flex;gap:7px;align-items:center">${x.file_path?`<button class="btn secondary" data-download="${x.id}">Download</button>`:""}<button class="btn secondary" data-delete="${x.id}">Delete</button></div></article>`).join(""):'<div class="empty">Nothing here yet. Add your first item.</div>';
 document.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>deleteItem(b.dataset.delete));document.querySelectorAll("[data-download]").forEach(b=>b.onclick=()=>downloadItem(b.dataset.download));}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-$("nav").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;current=b.dataset.cat;document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n===b));loadItems();});
+function openCategory(cat){current=cat;document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n.dataset.cat===cat));loadItems();}
+$("nav").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;openCategory(b.dataset.cat);});
+$("overview").addEventListener("click",e=>{const b=e.target.closest("[data-overview-cat]");if(b)openCategory(b.dataset.overviewCat);});
 $("add").onclick=()=>{$("modal").classList.add("show");$("saveMsg").textContent="";};$("cancel").onclick=()=>$("modal").classList.remove("show");
 async function saveItem(){if(!db)return;const title=$("itemTitle").value.trim(),category=$("category").value,visibility=$("visibility").value,content=$("url").value.trim(),file=$("file").files[0];if(!title){$("saveMsg").textContent="Please add a title.";return}
 $("save").disabled=true;$("saveMsg").textContent="Saving…";let file_path=null;
