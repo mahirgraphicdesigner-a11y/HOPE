@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101010"><title>HOPE — Your shared space</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#101010;--panel:#171717;--panel2:#1d1d1d;--line:#303030;--text:#f1ede3;--muted:#999;--gold:#e9b957;--red:#e27b70}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter, sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.mono{font-family:"IBM Plex Mono",monospace}
+.shell{max-width:1180px;margin:auto;padding:28px 24px 60px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:22px}
+.brand{font:700 27px "IBM Plex Mono";letter-spacing:-2px}.brand span{color:var(--gold)}.eyebrow{font:11px "IBM Plex Mono";letter-spacing:1.4px;color:var(--muted);margin-top:5px}
+.pill{border:1px solid var(--line);border-radius:99px;padding:8px 12px;color:var(--muted);font:11px "IBM Plex Mono"}
+.hero{padding:48px 0 30px}.hero h1{font:500 clamp(30px,5vw,54px)/1.1 "IBM Plex Mono";letter-spacing:-2px;margin:0 0 12px}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{color:var(--muted);margin:0;line-height:1.6}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:24px}.side,.content,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.side{padding:14px;height:max-content}.navbtn{width:100%;text-align:left;border:0;background:transparent;color:#aaa;padding:12px;border-radius:8px;font:13px "IBM Plex Mono"}.navbtn.active,.navbtn:hover{background:#25231d;color:var(--gold)}
+.content{padding:22px;min-height:420px}.toolbar{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap}
+h2{font:500 18px "IBM Plex Mono";margin:0}.muted{color:var(--muted);font-size:12px}.btn{background:var(--gold);color:#17130a;border:0;border-radius:8px;padding:11px 15px;font-weight:700;font-size:12px}.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);background:var(--panel2);border-radius:10px;padding:16px;min-height:110px}.card .ico{font-size:21px;margin-bottom:18px}.card strong{display:block;font:13px "IBM Plex Mono";margin-bottom:5px}.card small{color:var(--muted);font-size:11px}
+.items{display:grid;gap:9px}.item{border:1px solid var(--line);border-radius:9px;padding:13px;display:flex;gap:12px;align-items:center;justify-content:space-between}.item-main{min-width:0}.item-title{font-size:13px;overflow-wrap:anywhere}.item-meta{font-size:11px;color:var(--muted);margin-top:5px}.tag{font:10px "IBM Plex Mono";color:var(--gold);border:1px solid #51452b;border-radius:99px;padding:4px 7px}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.show{display:flex}.dialog{background:#191919;border:1px solid var(--line);border-radius:14px;padding:22px;width:min(480px,100%)}.dialog h3{font:500 18px "IBM Plex Mono";margin:0 0 18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font:11px "IBM Plex Mono";color:var(--muted)}.field input,.field select,.field textarea{width:100%;background:#101010;border:1px solid var(--line);border-radius:7px;padding:11px;color:var(--text)}.row{display:flex;gap:9px}.row>*{flex:1}.auth{max-width:430px;margin:70px auto;background:var(--panel);border:1px solid var(--line);padding:25px;border-radius:14px}.auth h1{font:600 28px "IBM Plex Mono"}.auth p{color:var(--muted);font-size:13px;line-height:1.6}.notice{background:#282316;border:1px solid #51452b;color:#e9d7a9;border-radius:8px;padding:11px;font-size:12px;line-height:1.5;margin:12px 0}.empty{text-align:center;padding:45px 12px;color:var(--muted);font-size:13px}.hide{display:none!important}
+@media(max-width:720px){.shell{padding:18px 14px 40px}.layout{grid-template-columns:1fr}.side{display:flex;overflow:auto;gap:4px}.navbtn{white-space:nowrap;width:auto}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:35px 0 24px}.content{padding:15px}.top{align-items:flex-start}}
+</style></head>
+<body>
+<div id="app" class="shell">
+ <header class="top"><div><div class="brand">HOPE<span>.</span></div><div class="eyebrow">A LITTLE SPACE FOR EVERYTHING</div></div><div class="pill" id="status">PUBLIC SPACE</div></header>
+ <main id="workspace">
+  <section class="hero"><h1>Your space.<br><em>Your people.</em></h1><p>Keep what matters. Find it whenever you need it.</p></section>
+  <div class="layout">
+   <nav class="side" id="nav">
+    <button class="navbtn active" data-cat="All">⌂ &nbsp; Overview</button>
+    <button class="navbtn" data-cat="Photos">▧ &nbsp; Photos</button>
+    <button class="navbtn" data-cat="Videos">▶ &nbsp; Videos</button>
+    <button class="navbtn" data-cat="Music">♫ &nbsp; Music</button>
+    <button class="navbtn" data-cat="Links">↗ &nbsp; Links</button>
+    <button class="navbtn" data-cat="Work">▤ &nbsp; Work</button>
+    <button class="navbtn" data-cat="Notes">✎ &nbsp; Notes</button>
+    <button class="navbtn" data-cat="Documents">▧ &nbsp; Documents</button>
+   </nav>
+   <section class="content">
+    <div class="toolbar"><div><h2 id="sectionTitle">Overview</h2><div class="muted" id="sectionSub">Your family space, all in one place.</div></div><div class="row" style="flex:0 0 auto"><button class="btn" id="add">＋ Add item</button></div></div>
+    <div id="overview" class="cards">
+     <div class="card"><div class="ico">▧</div><strong>Photos</strong><small>Memories worth keeping</small></div><div class="card"><div class="ico">♫</div><strong>Music</strong><small>Songs and playlists</small></div><div class="card"><div class="ico">↗</div><strong>Links</strong><small>Things to revisit</small></div><div class="card"><div class="ico">▤</div><strong>Work</strong><small>Files and resources</small></div><div class="card"><div class="ico">✎</div><strong>Notes</strong><small>Thoughts and reminders</small></div><div class="card"><div class="ico">▧</div><strong>Documents</strong><small>PDFs and files</small></div>
+    </div>
+    <div id="items" class="items hide"></div>
+   </section>
+  </div>
+ </main>
+</div>
+<div class="modal" id="modal"><div class="dialog"><h3>Add to HOPE.</h3>
+ <div class="field"><label>TITLE</label><input id="itemTitle" placeholder="Give it a name"></div>
+ <div class="field"><label>CATEGORY</label><select id="category"><option>Photos</option><option>Videos</option><option>Music</option><option>Links</option><option>Work</option><option>Notes</option><option>Documents</option></select></div>
+ <div class="field"><label>SPACE</label><select id="visibility"><option value="shared">Everyone (public)</option></select></div>
+ <div class="field"><label>LINK OR NOTE (OPTIONAL)</label><textarea id="url" rows="2" placeholder="Paste a URL or write a note"></textarea></div>
+ <div class="field"><label>FILE (OPTIONAL)</label><input id="file" type="file"></div>
+ <div class="row"><button class="btn secondary" id="cancel">Cancel</button><button class="btn" id="save">Save item</button></div><p class="muted" id="saveMsg"></p>
+</div></div>
+<script>
+const SUPABASE_URL = "https://ckgbkofiowlmyhshnwi.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_c252e1kXB-hwMvv_XC74qw_FZ_JP7y0";
+let db=null, current="All";
+const $=id=>document.getElementById(id);
+const configured=SUPABASE_URL.startsWith("https://") &&
+  (SUPABASE_ANON_KEY.startsWith("sb_publishable_") || SUPABASE_ANON_KEY.startsWith("ey"));
+if(configured){db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);$("status").textContent="PUBLIC SPACE";}
+else {$("status").textContent="SETUP REQUIRED";}
+async function loadItems(){if(!db)return;const {data,error}=await db.from("hope_items").select("*").order("created_at",{ascending:false});if(error){$("items").innerHTML='<div class="empty">Could not load items: '+escapeHtml(error.message)+'</div>';return}
+const list=(data||[]).filter(x=>current==="All"||x.category===current);$("overview").classList.toggle("hide",current!=="All");$("items").classList.toggle("hide",current==="All");$("sectionTitle").textContent=current==="All"?"Overview":current;$("sectionSub").textContent=current==="All"?"Your family space, all in one place.":list.length+" saved item(s)";
+$("items").innerHTML=list.length?list.map(x=>`<article class="item"><div class="item-main"><div class="item-title">${escapeHtml(x.title||"Untitled")}</div><div class="item-meta">${escapeHtml(x.category)} · Public · ${new Date(x.created_at).toLocaleDateString()}</div>${x.content?`<div class="item-meta">${escapeHtml(x.content)}</div>`:""}</div><div style="display:flex;gap:7px;align-items:center">${x.file_path?`<button class="btn secondary" data-download="${x.id}">Download</button>`:""}<button class="btn secondary" data-delete="${x.id}">Delete</button></div></article>`).join(""):'<div class="empty">Nothing here yet. Add your first item.</div>';
+document.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>deleteItem(b.dataset.delete));document.querySelectorAll("[data-download]").forEach(b=>b.onclick=()=>downloadItem(b.dataset.download));}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+$("nav").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;current=b.dataset.cat;document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n===b));loadItems();});
+$("add").onclick=()=>{$("modal").classList.add("show");$("saveMsg").textContent="";};$("cancel").onclick=()=>$("modal").classList.remove("show");
+async function saveItem(){if(!db)return;const title=$("itemTitle").value.trim(),category=$("category").value,visibility=$("visibility").value,content=$("url").value.trim(),file=$("file").files[0];if(!title){$("saveMsg").textContent="Please add a title.";return}
+$("save").disabled=true;$("saveMsg").textContent="Saving…";let file_path=null;
+try{if(file){const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");file_path="public/"+Date.now()+"_"+safe;const up=await db.storage.from("hope-files").upload(file_path,file,{upsert:false});if(up.error)throw up.error;}
+const ins=await db.from("hope_items").insert({title,category,visibility:"shared",content,file_path});if(ins.error)throw ins.error;
+$("modal").classList.remove("show");$("itemTitle").value="";$("url").value="";$("file").value="";await loadItems();
+}catch(e){$("saveMsg").textContent=e.message||"Could not save item."}finally{$("save").disabled=false}}
+$("save").onclick=saveItem;
+async function downloadItem(id){const {data,error}=await db.from("hope_items").select("file_path,title").eq("id",id).single();if(error||!data.file_path)return;const r=db.storage.from("hope-files").getPublicUrl(data.file_path);const a=document.createElement("a");a.href=r.data.publicUrl;a.download=data.title||"download";a.click();}
+async function deleteItem(id){if(!confirm("Delete this item?"))return;const {data}=await db.from("hope_items").select("file_path").eq("id",id).single();const {error}=await db.from("hope_items").delete().eq("id",id);if(error){alert(error.message);return}if(data?.file_path)await db.storage.from("hope-files").remove([data.file_path]);await loadItems();}
+if(db){loadItems();}
+</script></body></html>
